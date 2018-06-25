@@ -22,7 +22,7 @@ const GroupComponent = ({ group }) => {
                 group.group.teams.map((team, id) => {
                     return (
                         <View key={id} style={{ flexDirection: 'row', flex: 1, borderBottomWidth: 1, borderBottomColor: 'lightgrey', padding: 5 }}>
-                            <Text style={{ flex: 2, textAlign: 'center' }}>{team.team.country}</Text>
+                            <Text style={{ flex: 2, textAlign: 'left' }}>{team.team.country}</Text>
                             <Text style={{ flex: 1, textAlign: 'center' }}>{team.team.games_played}</Text>
                             <Text style={{ flex: 1, textAlign: 'center' }}>{team.team.wins}</Text>
                             <Text style={{ flex: 1, textAlign: 'center' }}>{team.team.draws}</Text>

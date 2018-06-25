@@ -19,6 +19,9 @@ class Home extends Component {
             <View>
                 <ScrollView>
                     <View style={{ width: width * .95, alignSelf: 'center', marginTop: width * .15 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            
+                        </View>
                         {
                             groups.map((group, id) =>
                                 <GroupComponent
