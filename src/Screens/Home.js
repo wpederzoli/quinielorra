@@ -1,28 +1,46 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 
-import { setupCompetitionData } from '../Actions'
+import { setup } from '../Actions'
+import { GroupComponent } from '../Components'
 
-class Home extends Component{
+class Home extends Component {
 
-    componentWillMount(){
-        this.props.setupCompetitionData()
+    componentWillMount() {
+        this.props.setup()
     }
 
-    render(){
-        return(
-           <View>
-               <Text>Hola</Text>
-           </View> 
+    render() {
+
+        const { groups, width } = this.props
+
+        return (
+            <View>
+                <ScrollView>
+                    <View style={{ width: width * .80, alignSelf: 'center', marginTop: width * .15 }}>
+                        {
+                            groups.map((group, id) =>
+                                <GroupComponent
+                                    key={id}
+                                    group={group}
+                                />
+                            )
+                        }
+                    </View>
+                </ScrollView>
+            </View>
         )
     }
 }
 
 const mapStateToProps = state => {
+    const { groups, width } = state.home
+
     return {
-        home: state.home
+        groups,
+        width
     }
 }
 
-export default connect(mapStateToProps, { setupCompetitionData })(Home)
+export default connect(mapStateToProps, { setup })(Home)

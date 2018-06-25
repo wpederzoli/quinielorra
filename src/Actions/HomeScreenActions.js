@@ -1,12 +1,23 @@
 import { SETUP_DATA } from './types'
+import { Dimensions } from 'react-native'
 
-export const setupCompetitionData = () =>{
+const setupCompetitionData = async () => {
+    const response = await fetch('http://worldcup.sfg.io//teams/group_results')
+    const data = await response.json()
+    return data
+}
+
+const setupDimensions = () =>{
+    return Dimensions.get('window').width
+}
+
+export const setup = () =>{
     return async(dispatch) =>{
-        const response = await fetch('https://api.fifa.com/api/v1/calendar/matches?idseason=254645&idcompetition=17&language=en-GB&count=100')
-        const data = await response.json()
-        dispatch({
-            type: SETUP_DATA,
-            payload: data
-        })
+       const fifaData = await setupCompetitionData()
+       const width = setupDimensions()
+       dispatch({
+           type: SETUP_DATA,
+           payload: { fifaData, width }
+       })
     }
 }
