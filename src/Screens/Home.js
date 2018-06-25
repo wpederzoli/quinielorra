@@ -18,7 +18,7 @@ class Home extends Component {
         return (
             <View>
                 <ScrollView>
-                    <View style={{ width: width * .80, alignSelf: 'center', marginTop: width * .15 }}>
+                    <View style={{ width: width * .95, alignSelf: 'center', marginTop: width * .15 }}>
                         {
                             groups.map((group, id) =>
                                 <GroupComponent
