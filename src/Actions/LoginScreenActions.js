@@ -41,7 +41,7 @@ export const submit = ({ email, password, navigation }) =>{
 export const isUserLogedIn = (navigation) =>{
     firebase.auth().onAuthStateChanged(user =>{
         if(user){
-            navigation.navigate('Home')
+            navigation.navigate('TeamPicker')
         }
     })
 }

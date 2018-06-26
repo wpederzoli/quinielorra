@@ -6,3 +6,5 @@ export const FIREBASE_CONFIG = {
     storageBucket: "quinielorra.appspot.com",
     messagingSenderId: "143772691550"
 }
+
+export const API_URL = 'http://worldcup.sfg.io/'

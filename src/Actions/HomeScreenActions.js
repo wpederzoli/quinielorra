@@ -1,8 +1,9 @@
 import { SETUP_DATA } from './types'
 import { Dimensions } from 'react-native'
+import { API_URL } from '../Constants'
 
 const setupCompetitionData = async () => {
-    const response = await fetch('http://worldcup.sfg.io//teams/group_results')
+    const response = await fetch(`${API_URL}/teams/group_results`)
     const data = await response.json()
     return data
 }
