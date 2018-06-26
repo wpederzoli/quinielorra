@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { emailChanged, passwordChanged } from '../Actions'
+import { emailChanged, passwordChanged, submit, isUserLogedIn } from '../Actions'
 
 import { LoginComponent } from '../Components'
 
 class Login extends Component {
+
+    componentWillMount(){
+        isUserLogedIn(this.props.navigation)
+    }
+
     render() {
 
-        const { email, password, loginError, emailChanged, passwordChanged } = this.props
+        const { email, password, loginError, emailChanged, passwordChanged, submit } = this.props
 
         return (
             <LoginComponent
@@ -16,19 +21,19 @@ class Login extends Component {
                 loginError={loginError}
                 emailChanged={emailChanged}
                 passwordChanged={passwordChanged}
+                submit={() => submit(this.props)}
             />
         )
     }
 }
 
 const mapStateToProps = state => {
-    const { email, password, emailError, passwordError } = state.login
+    const { email, password, loginError } = state.login
     return {
         email,
         password,
-        emailError,
-        passwordError
+        loginError
     }
 }
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged })(Login)
+export default connect(mapStateToProps, { emailChanged, passwordChanged, submit, isUserLogedIn })(Login)
