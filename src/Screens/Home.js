@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 
 import { setup } from '../Actions'
-import { HomeFeed, Login } from '../Components'
+import { HomeFeed } from '../Components'
 
 class Home extends Component {
 
@@ -13,15 +13,14 @@ class Home extends Component {
 
     render() {
 
-        const { groups, width } = this.props
+        const { groups, width, email, password, emailError, passwordError } = this.props
 
         return (
-            <View style={{ width: width * .95, alignSelf: 'center', marginTop: width * .15 }}>
-                <Login />
-                {/* <HomeFeed
+            <View>
+                <HomeFeed
                     width={width} 
                     groups={groups} 
-                /> */}
+                />
             </View>
         )
     }

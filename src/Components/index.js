@@ -1,3 +1,3 @@
 export * from './GroupComponent'
 export * from './HomeFeed'
-export * from './Login'
+export * from './LoginComponent'

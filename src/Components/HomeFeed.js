@@ -6,7 +6,7 @@ import { GroupComponent } from '.'
 const HomeFeed = ({ groups, width }) => {
     return (
         <ScrollView>
-            <View>
+            <View style={{ width: width * .95, alignSelf: 'center', marginTop: width * .15 }}>
                 <View style={{ flexDirection: 'row' }}>
 
                 </View>

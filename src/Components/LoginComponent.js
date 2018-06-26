@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements'
 
-const Login = ({ emailError, passwordError, emailChanged, passwordChanged }) =>{
+const LoginComponent = ({ emailError, passwordError, emailChanged, passwordChanged }) =>{
     return(
         <View>
             <FormLabel>Email</FormLabel>
@@ -16,4 +16,4 @@ const Login = ({ emailError, passwordError, emailChanged, passwordChanged }) =>{
     )
 }
 
-export { Login }
+export { LoginComponent }

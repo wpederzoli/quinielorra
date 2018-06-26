@@ -2,7 +2,11 @@ import { SETUP_DATA } from "../Actions/types"
 
 const INITIAL_STATE = {
     groups: [],
-    width: ''
+    width: '',
+    email: '',
+    password: '',
+    emailError: false,
+    passwordError: false
 }
 
 export default (state=INITIAL_STATE, action) =>{
