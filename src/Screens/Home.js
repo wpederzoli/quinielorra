@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 
 import { setup } from '../Actions'
-import { GroupComponent } from '../Components'
+import { HomeFeed, Login } from '../Components'
 
 class Home extends Component {
 
@@ -16,22 +16,12 @@ class Home extends Component {
         const { groups, width } = this.props
 
         return (
-            <View>
-                <ScrollView>
-                    <View style={{ width: width * .95, alignSelf: 'center', marginTop: width * .15 }}>
-                        <View style={{ flexDirection: 'row' }}>
-                            
-                        </View>
-                        {
-                            groups.map((group, id) =>
-                                <GroupComponent
-                                    key={id}
-                                    group={group}
-                                />
-                            )
-                        }
-                    </View>
-                </ScrollView>
+            <View style={{ width: width * .95, alignSelf: 'center', marginTop: width * .15 }}>
+                <Login />
+                {/* <HomeFeed
+                    width={width} 
+                    groups={groups} 
+                /> */}
             </View>
         )
     }
