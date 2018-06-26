@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { emailChanged, passwordChanged, submit, isUserLogedIn } from '../Actions'
+import { emailChanged, passwordChanged, submit, isUserLogedIn, setup } from '../Actions'
 
 import { LoginComponent } from '../Components'
 
 class Login extends Component {
 
     componentWillMount(){
+        this.props.setup()
         isUserLogedIn(this.props.navigation)
     }
 
@@ -36,4 +37,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged, submit, isUserLogedIn })(Login)
+export default connect(mapStateToProps, { emailChanged, passwordChanged, submit, isUserLogedIn, setup })(Login)

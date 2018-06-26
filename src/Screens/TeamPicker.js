@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
 import { View, Text, Dimensions, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import { setup } from '../Actions'
+import { pickTeam } from '../Actions'
+import { Button } from 'react-native-elements'
 
 import { GroupTeamsPicker } from '../Components'
 
 class TeamPicker extends Component {
 
-    componentWillMount() {
-        this.props.setup()
-    }
-
     render() {
 
-        const { groups } = this.props
+        const { groups, pickTeam, teams } = this.props
 
         return (
             <View>
@@ -22,18 +19,19 @@ class TeamPicker extends Component {
                 {
                     groups.map((group, key) => {
                         return (
-                            <View key={key}>
+                            <View key={key} style={{ width: Dimensions.get('window').width * 0.95, alignSelf: 'center', marginTop: 10 }}>
                                 <View style={{ backgroundColor: 'lightgreen', padding: 5 }}>
                                     <Text style={{ color: '#fff', textAlign: 'center', fontSize: 15 }}>{group.group.letter}</Text>
                                 </View>
                                 <GroupTeamsPicker
-                                    width={Dimensions.get('window').width}
                                     group={group}
+                                    onSelect={(group, team) => pickTeam(group, team, teams)}
                                 />
                             </View>
                         )
                     })
                 }
+                <Button title='Continue' onPress={() => console.log(this.props)} />
                 </ScrollView>
             </View>
         )
@@ -41,11 +39,11 @@ class TeamPicker extends Component {
 }
 
 const mapStateToProps = state => {
-    const { allTeams } = state.teamPicks
+    const { teams } = state.teamPicks
     return {
-        allTeams,
+        teams,
         groups: state.home.groups
     }
 }
 
-export default connect(mapStateToProps, { setup })(TeamPicker)
+export default connect(mapStateToProps, { pickTeam })(TeamPicker)
