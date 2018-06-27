@@ -1,5 +1,6 @@
 //Home Actions
 export const SETUP_DATA = 'setup_data'
+export const UPDATE_SCORE = 'update_score'
 
 
 //Login Actions

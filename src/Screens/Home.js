@@ -10,16 +10,18 @@ class Home extends Component {
 
     componentDidMount(){
         console.log(this.props)
-        getScore(this.props)
+        this.props.getScore(this.props)
     }
 
     render() {
 
-        const { groups, width } = this.props
+        const { groups, width, score } = this.props
 
         return (
             <View>
-                <ScoresComponent />
+                <ScoresComponent 
+                    score={score}
+                />
                 <HomeFeed
                     width={width} 
                     groups={groups} 
@@ -30,11 +32,12 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-    const { groups, width } = state.home
+    const { groups, width, score } = state.home
 
     return {
         groups,
         width,
+        score,
         teams: state.teamPicks.teams
     }
 }

@@ -1,4 +1,4 @@
-import { SETUP_DATA } from './types'
+import { SETUP_DATA, UPDATE_SCORE } from './types'
 import { Dimensions } from 'react-native'
 import { API_URL } from '../Constants'
 
@@ -24,10 +24,26 @@ export const setup = () =>{
 }
 
 export const getScore = ({ groups, teams }) =>{
-    console.log('this is groups ' + groups)
-    console.log('this is teams ' + teams)
 
+    let points = 0
+    const letters = Object.keys(teams)
+
+    groups.map(group =>{
+        group.ordered_teams.map(team => {
+            const index = group.ordered_teams.indexOf(team)
+            letters.map(letter =>{
+                Object.values(teams[letter]).map(prediction =>{
+                    if(team.country === prediction && index === teams[letter].indexOf(prediction)){
+                        points = points + 2
+                    }
+                })
+            })
+        })       
+    })
+
+    console.log('this is payload : ' + points)
     return{
-        type: ''
+        type: UPDATE_SCORE,
+        payload: points
     }
 }
