@@ -2,11 +2,8 @@ import { PICK_TEAM, UNPICK_TEAM, UNPICK_GROUP } from './types'
 
 export const pickTeam = (group, team, teams) => {
     let teamsArray = teams[group]
-    console.log('this is teamsarr = ' + teamsArray)
-    console.log('this is teamsArr index of ' + team + ' ' + teamsArray.indexOf(team))
-    console.log('this is teamsArr length ' + teamsArray.length)
+
     if (teamsArray.indexOf(team) === -1 && teamsArray.length < 2) {
-        console.log('this is true ')
         return {
             type: PICK_TEAM,
             payload: {
@@ -34,7 +31,7 @@ export const pickTeam = (group, team, teams) => {
         }
     }else{
         return{
-            type: 'hola'
+            type: 'default'
         }
     }
 }

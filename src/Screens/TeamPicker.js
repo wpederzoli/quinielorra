@@ -7,11 +7,6 @@ import { Button } from 'react-native-elements'
 import { GroupTeamsPicker } from '../Components'
 
 class TeamPicker extends Component {
-    
-    componentWillMount(){
-        console.log(this.props.groups)
-    }
-
     render() {
 
         const { groups, pickTeam, teams } = this.props
@@ -30,6 +25,7 @@ class TeamPicker extends Component {
                                 <GroupTeamsPicker
                                     group={group}
                                     onSelect={(group, team) => pickTeam(group, team, teams)}
+                                    teams={teams}
                                 />
                             </View>
                         )

@@ -1,9 +1,8 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { Button } from 'react-native-elements'
 
-const GroupTeamsPicker = ({ group, onSelect }) => {
-    console.log('this is group: ' +  JSON.stringify(group))
+const GroupTeamsPicker = ({ group, onSelect, teams }) => {
     return (
         <View>
             {
@@ -12,7 +11,7 @@ const GroupTeamsPicker = ({ group, onSelect }) => {
                         <Button 
                             key={id} 
                             title={team.country} 
-                            backgroundColor='#fff' 
+                            backgroundColor={teams[group.letter].indexOf(team.country) !== -1 ? 'green' : '#fff'} 
                             textStyle={{ color: '#000' }} 
                             buttonStyle={{ borderBottomWidth: 1, borderBottomColor: 'lightgrey' }}
                             onPress={() => onSelect(group.letter, team.country)}
