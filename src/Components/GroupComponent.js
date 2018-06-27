@@ -19,18 +19,18 @@ const GroupComponent = ({ group }) => {
                 <Text style={{ flex: 1, textAlign: 'center', fontWeight: '600' }}>PT</Text>
             </View>
             {
-                group.group.teams.map((team, id) => {
+                group.ordered_teams.map((team, id) => {
                     return (
                         <View key={id} style={{ flexDirection: 'row', flex: 1, borderBottomWidth: 1, borderBottomColor: 'lightgrey', padding: 5 }}>
-                            <Text style={{ flex: 2, textAlign: 'left' }}>{team.team.country}</Text>
-                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.team.games_played}</Text>
-                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.team.wins}</Text>
-                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.team.draws}</Text>
-                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.team.losses}</Text>
-                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.team.goals_for}</Text>
-                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.team.goals_against}</Text>
-                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.team.goal_differential}</Text>
-                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.team.points}</Text>
+                            <Text style={{ flex: 2, textAlign: 'left' }}>{team.country}</Text>
+                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.games_played}</Text>
+                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.wins}</Text>
+                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.draws}</Text>
+                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.losses}</Text>
+                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.goals_for}</Text>
+                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.goals_against}</Text>
+                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.goal_differential}</Text>
+                            <Text style={{ flex: 1, textAlign: 'center' }}>{team.points}</Text>
                         </View>
                     )
                 })

@@ -79,17 +79,34 @@ const validateTeams = (teams) => {
 export const checkForPickedTeams = (navigation) => {
     return async (dispatch) => {
         const uid = firebase.auth().currentUser.uid
-        const db = await getFromDB(uid)
+        const res = await getFromDB(uid)
+        const db = await res.toJSON()
+        console.log('this is res.json ' + db)
         if (db !== null) {
+    
+            let teams = formatTeams(db)
+
             navigation.navigate('Home')
             dispatch({
                 type: SELECTED_TEAMS,
-                payload: db
+                payload: teams
             })
         }else{
             dispatch({ type: 'default' })
         }
     }
+}
+
+const formatTeams = (teams) =>{
+    let formatted = {}
+
+    const keys = Object.keys(teams)
+    keys.map(key =>{
+        const values = Object.values(teams[key])
+        formatted = {...formatted, [key]:[...values]}
+    })
+    console.log('this is formatted = ' + formatted)
+    return formatted
 }
 
 const getFromDB = async (uid) => {

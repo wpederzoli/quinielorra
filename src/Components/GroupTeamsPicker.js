@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import { Button } from 'react-native-elements'
 
 const GroupTeamsPicker = ({ group, onSelect, teams }) => {
+    console.log('this is teams ' + JSON.stringify(teams))
     return (
         <View>
             {
