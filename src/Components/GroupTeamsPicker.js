@@ -7,12 +7,13 @@ const GroupTeamsPicker = ({ group, onSelect, teams }) => {
         <View>
             {
                 group.ordered_teams.map((team, id) => {
+                    const index = teams[group.letter].indexOf(team.country)
                     return (
                         <Button 
                             key={id} 
-                            title={team.country} 
-                            backgroundColor={teams[group.letter].indexOf(team.country) !== -1 ? 'green' : '#fff'} 
-                            textStyle={{ color: '#000' }} 
+                            title={index !== -1 ? `${index + 1}.- ${team.country}` : team.country}
+                            backgroundColor={index !== -1 ? 'green' : '#fff'} 
+                            textStyle={index !== -1 ? { color: '#fff', fontWeight: '600', fontSize: 16 } : { color: '#000' }} 
                             buttonStyle={{ borderBottomWidth: 1, borderBottomColor: 'lightgrey' }}
                             onPress={() => onSelect(group.letter, team.country)}
                         />

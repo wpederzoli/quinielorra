@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Dimensions, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import { pickTeam, setup } from '../Actions'
+import { pickTeam, setup, submitTeams } from '../Actions'
 import { Button } from 'react-native-elements'
 
 import { GroupTeamsPicker } from '../Components'
@@ -9,7 +9,7 @@ import { GroupTeamsPicker } from '../Components'
 class TeamPicker extends Component {
     render() {
 
-        const { groups, pickTeam, teams } = this.props
+        const { groups, pickTeam, teams, submit } = this.props
 
         return (
             <View>
@@ -31,7 +31,7 @@ class TeamPicker extends Component {
                         )
                     })
                 }
-                <Button title='Continue' onPress={() => console.log(this.props)} />
+                <Button title='Continue' onPress={() => submitTeams(teams)} />
                 </ScrollView>
             </View>
         )
@@ -46,4 +46,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { pickTeam, setup })(TeamPicker)
+export default connect(mapStateToProps, { pickTeam, setup, submitTeams })(TeamPicker)
