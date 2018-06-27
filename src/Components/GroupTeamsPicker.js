@@ -3,18 +3,19 @@ import { View, Text } from 'react-native'
 import { Button } from 'react-native-elements'
 
 const GroupTeamsPicker = ({ group, onSelect }) => {
+    console.log('this is group: ' +  JSON.stringify(group))
     return (
         <View>
             {
-                group.group.teams.map((team, id) => {
+                group.ordered_teams.map((team, id) => {
                     return (
                         <Button 
                             key={id} 
-                            title={team.team.country} 
+                            title={team.country} 
                             backgroundColor='#fff' 
                             textStyle={{ color: '#000' }} 
                             buttonStyle={{ borderBottomWidth: 1, borderBottomColor: 'lightgrey' }}
-                            onPress={() => onSelect(group.group.letter, team.team.country)}
+                            onPress={() => onSelect(group.letter, team.country)}
                         />
                     )
                 })

@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import { View, Text, Dimensions, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import { pickTeam } from '../Actions'
+import { pickTeam, setup } from '../Actions'
 import { Button } from 'react-native-elements'
 
 import { GroupTeamsPicker } from '../Components'
 
 class TeamPicker extends Component {
+    
+    componentWillMount(){
+        console.log(this.props.groups)
+    }
 
     render() {
 
@@ -21,7 +25,7 @@ class TeamPicker extends Component {
                         return (
                             <View key={key} style={{ width: Dimensions.get('window').width * 0.95, alignSelf: 'center', marginTop: 10 }}>
                                 <View style={{ backgroundColor: 'lightgreen', padding: 5 }}>
-                                    <Text style={{ color: '#fff', textAlign: 'center', fontSize: 15 }}>{group.group.letter}</Text>
+                                    <Text style={{ color: '#fff', textAlign: 'center', fontSize: 15 }}>{group.letter}</Text>
                                 </View>
                                 <GroupTeamsPicker
                                     group={group}
@@ -46,4 +50,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { pickTeam })(TeamPicker)
+export default connect(mapStateToProps, { pickTeam, setup })(TeamPicker)
