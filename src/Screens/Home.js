@@ -9,7 +9,6 @@ class Home extends Component {
 
 
     componentDidMount(){
-        console.log(this.props)
         this.props.getScore(this.props)
     }
 

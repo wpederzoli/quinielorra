@@ -34,7 +34,11 @@ export const getScore = ({ groups, teams }) =>{
             letters.map(letter =>{
                 Object.values(teams[letter]).map(prediction =>{
                     if(team.country === prediction && index === teams[letter].indexOf(prediction)){
+                        console.log('exact match')
                         points = points + 2
+                    }else if(team.country === prediction && index <= 1 && index !== teams[letter].indexOf(prediction)){
+                        console.log('team match = ' + index + ' ' + team.country + ' ' + teams[letter].indexOf(prediction) + ' ' + prediction)
+                        points = points + 1
                     }
                 })
             })
