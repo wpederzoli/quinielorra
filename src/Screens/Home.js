@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
-import { View, ScrollView } from 'react-native'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { setup } from '../Actions'
-import { HomeFeed } from '../Components'
+import { setup, getScore } from '../Actions'
+import { HomeFeed, ScoresComponent } from '../Components'
 
 class Home extends Component {
+
+
+    componentDidMount(){
+        console.log(this.props)
+        getScore(this.props)
+    }
 
     render() {
 
@@ -13,6 +19,7 @@ class Home extends Component {
 
         return (
             <View>
+                <ScoresComponent />
                 <HomeFeed
                     width={width} 
                     groups={groups} 
@@ -27,8 +34,9 @@ const mapStateToProps = state => {
 
     return {
         groups,
-        width
+        width,
+        teams: state.teamPicks.teams
     }
 }
 
-export default connect(mapStateToProps, { setup })(Home)
+export default connect(mapStateToProps, { setup, getScore })(Home)

@@ -22,3 +22,12 @@ export const setup = () =>{
        })
     }
 }
+
+export const getScore = ({ groups, teams }) =>{
+    console.log('this is groups ' + groups)
+    console.log('this is teams ' + teams)
+
+    return{
+        type: ''
+    }
+}
