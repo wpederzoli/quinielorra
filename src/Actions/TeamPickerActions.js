@@ -1,4 +1,4 @@
-import { PICK_TEAM, UNPICK_TEAM, UNPICK_GROUP, SUBMIT_TEAMS, SUBMIT_FAIL } from './types'
+import { PICK_TEAM, UNPICK_TEAM, UNPICK_GROUP, SUBMIT_TEAMS, SUBMIT_FAIL, SELECTED_TEAMS } from './types'
 import firebase from 'firebase'
 
 export const pickTeam = (group, team, teams) => {
@@ -37,28 +37,29 @@ export const pickTeam = (group, team, teams) => {
     }
 }
 
-export const submitTeams = (teams) =>{
+export const submitTeams = (teams, navigation) => {
     const valid = validateTeams(teams)
-    if(valid){
+    if (valid) {
         const uid = firebase.auth().currentUser.uid
-        console.log('this is uid ' + uid)
-        postToDB(teams, uid)
-    }else{
+
+        postToDB(teams, uid, navigation)
+    } else {
         alert('Pick 2 teams from each group!')
-        return{
+        return {
             type: SUBMIT_FAIL
         }
     }
 }
 
-const postToDB = async(teams, uid) =>{
-    console.log('this is uid: ' + uid)
-    console.log('this is teams ' + JSON.stringify(teams))
+const postToDB = async (teams, uid, navigation) => {
+
     await firebase.database().ref('teams/' + uid).set({
         ...teams
     })
-    console.log('success')
-    return{
+
+    navigation.navigate('Home')
+
+    return {
         type: SUBMIT_TEAMS
     }
 }
@@ -73,4 +74,25 @@ const validateTeams = (teams) => {
     })
 
     return valid
+}
+
+export const checkForPickedTeams = (navigation) => {
+    return async (dispatch) => {
+        const uid = firebase.auth().currentUser.uid
+        const db = await getFromDB(uid)
+        if (db !== null) {
+            navigation.navigate('Home')
+            dispatch({
+                type: SELECTED_TEAMS,
+                payload: db
+            })
+        }else{
+            dispatch({ type: 'default' })
+        }
+    }
+}
+
+const getFromDB = async (uid) => {
+    const db = await firebase.database().ref('/teams/' + uid).once('value')
+    return db
 }

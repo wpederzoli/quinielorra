@@ -5,7 +5,7 @@ const GroupComponent = ({ group }) => {
     return (
         <View style={{ padding: 5 }}>
             <TouchableOpacity style={{ flex: 1, backgroundColor: '#87ce87', padding: 5 }}>
-                <Text style={{ textAlign: 'center', color: '#fff', fontWeight: '500' }}>Grupo {group.group.letter}</Text>
+                <Text style={{ textAlign: 'center', color: '#fff', fontWeight: '500' }}>Grupo {group.letter}</Text>
             </TouchableOpacity>
             <View style={{ flexDirection: 'row', flex: 1, borderWidth: 1, borderColor: 'lightgreen' }}>
                 <Text style={{ flex: 2, textAlign: 'center', fontWeight: '600' }}>Country</Text>

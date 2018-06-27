@@ -7,13 +7,9 @@ import { HomeFeed } from '../Components'
 
 class Home extends Component {
 
-    componentWillMount() {
-        this.props.setup()
-    }
-
     render() {
 
-        const { groups, width, email, password, emailError, passwordError } = this.props
+        const { groups, width } = this.props
 
         return (
             <View>

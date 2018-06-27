@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import { View, Text, Dimensions, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import { pickTeam, setup, submitTeams } from '../Actions'
+import { pickTeam, setup, submitTeams, checkForPickedTeams } from '../Actions'
 import { Button } from 'react-native-elements'
 
 import { GroupTeamsPicker } from '../Components'
 
 class TeamPicker extends Component {
+    
+    componentWillMount(){
+        this.props.checkForPickedTeams(this.props.navigation)
+    }
+    
     render() {
 
-        const { groups, pickTeam, teams, submit } = this.props
+        const { groups, pickTeam, teams, navigation } = this.props
 
         return (
             <View>
@@ -31,7 +36,7 @@ class TeamPicker extends Component {
                         )
                     })
                 }
-                <Button title='Continue' onPress={() => submitTeams(teams)} />
+                <Button title='Continue' onPress={() => submitTeams(teams, navigation)} />
                 </ScrollView>
             </View>
         )
@@ -46,4 +51,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { pickTeam, setup, submitTeams })(TeamPicker)
+export default connect(mapStateToProps, { pickTeam, setup, submitTeams, checkForPickedTeams })(TeamPicker)

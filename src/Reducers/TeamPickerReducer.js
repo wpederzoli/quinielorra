@@ -1,4 +1,4 @@
-import { PICK_TEAM, UNPICK_TEAM, UNPICK_GROUP } from "../Actions/types"
+import { PICK_TEAM, UNPICK_TEAM, UNPICK_GROUP, SELECTED_TEAMS } from "../Actions/types"
 
 const INITIAL_STATE = {
     teams: {
@@ -21,6 +21,8 @@ export default (state=INITIAL_STATE, action) =>{
             return {...state, teams: {...state.teams, [action.payload.group]:[action.payload.teams]} }
         case UNPICK_GROUP:
             return {...state, teams: {...state.teams, [action.payload]: []} }
+        case SELECTED_TEAMS:
+            return {...state, teams: action.payload}
         default:
             return state
     }
